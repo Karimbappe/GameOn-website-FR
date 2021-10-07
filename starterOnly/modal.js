@@ -72,3 +72,119 @@ function checkEmail() {
   }
   return isEmailValid
 }
+
+/** Check if the age is filled and return a boolean */
+function checkAge() {
+  const ageInput = document.getElementById('birthdate').value;
+  const regExAge = /(19\d\d|20[0-3])(-\d\d){2}/;
+  const $ageErrorMsg = document.querySelector('.ageErrorMsg');
+  const isAgeValid = regExAge.test(ageInput);
+
+  if (isAgeValid) {
+    $ageErrorMsg.classList.add('hidden');
+  } else {
+    $ageErrorMsg.classList.remove('hidden')
+  }
+  return isAgeValid
+}
+
+/** Check if the tournament count is filled and return a boolean */
+function checkTournamentCount() {
+  const tournamentInput = document.getElementById('quantity').value;
+  const $tournamentErrorMsg = document.querySelector('.tournamentErrorMsg');
+  const isTournamentNumberIsValid = tournamentInput.length > 0;
+
+  if (isTournamentNumberIsValid) {
+    $tournamentErrorMsg.classList.add('hidden');
+  } else {
+    $tournamentErrorMsg.classList.remove('hidden')
+  }
+  return isTournamentNumberIsValid
+}
+
+/** Check if one radio button is checked and return a boolean */
+function checkTournamentCity() {
+  const $cityRadios = document.querySelectorAll('#city-radios .checkbox-input');
+  const $tournamentCityErrorMsg = document.querySelector('.tournamentCityErrorMsg');
+  let isTournamentCityNumberValid = false;
+
+  for (let i = 0; i < $cityRadios.length; i++) {
+    if ($cityRadios[i].checked) {
+      $tournamentCityErrorMsg.classList.add('hidden');
+      isTournamentCityNumberValid = true;
+      break
+    } else {
+      $tournamentCityErrorMsg.classList.remove('hidden');
+    }
+  }
+  return isTournamentCityNumberValid
+}
+
+/** Check if the user has checked the terms and conditions and return a boolean */
+function checkTermsAndConditions() {
+  const terms = document.querySelector('#acceptConditions')
+  const $termsCheckMsg = document.querySelector('.termsCheckMsg');
+  const termsAreChecked = terms.checked;
+
+  if (termsAreChecked) {
+    $termsCheckMsg.classList.add('hidden');
+  } else {
+    $termsCheckMsg.classList.remove('hidden');
+  }
+  return termsAreChecked
+}
+
+/** Arrow function for check if the form input are all valids */
+const isFormValid = () => checkFirstName() && checkLastName() && checkEmail() && checkAge() && checkTournamentCount() && checkTournamentCity() && checkTermsAndConditions()
+
+
+/**  Event Listeners for submit button */
+$registrationForm.addEventListener('submit', function(event) {
+  event.preventDefault()
+// if all booleans are true
+  if (isFormValid()) {
+    // untoggle the modal
+    modalDisplay('none');
+    // call the notification toast to confirm
+    showNotificationToast()
+    // reset the content
+    $registrationForm.reset();
+  } 
+})
+
+
+// ma Version 
+
+document.getElementById("inscription").addEventListener("submit", function (e) {
+  
+  var erreur;
+  var pseudo = document.getElementById("pseudo");
+  var email = document.getElementById("email");
+  var age = document.getElementById("age");
+  var ville = document.getElementById("ville");
+  
+  if(!ville.value){
+    erreur = "Veuillez renseigner une ville"; 
+  }
+  
+  if(!age.value){
+    erreur = "Veuillez renseigner votre age"; 
+  }
+  
+  if(!email.value){
+    erreur = "Veuillez renseigner un email"; 
+  }
+  
+  if(!pseudo.value){
+    erreur = "Veuillez renseigner un pseudo"; 
+  }
+  
+  if (erreur) {
+    e.preventDefault();
+    document.getElementById("erreur").innerHTML = erreur;
+    return false;
+  } else{
+    alert ('formulaire envoyé !');
+  }
+})
+

@@ -499,7 +499,7 @@ footer {
     white-space: normal;
   }
   .hero-text {
-    width: unset;
+    width: auto;
     font-size: 1.5rem;
   }
   .hero-img img {
@@ -516,6 +516,7 @@ footer {
     text-align: center;
   }
 }
+
 
 @keyframes modalopen {
   from {

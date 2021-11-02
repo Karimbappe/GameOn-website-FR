@@ -42,7 +42,7 @@ const boutonClose = document.querySelector('.btn-close')
 
 const regexLettres = /^[a-zA-Z-\s]+$/;
 const regexMessagerie = /^[\w\-\+]+(\.[\w\-]+)*@[\w\-]+(\.[\w\-]+)*\.[\w\-]{2,4}$/;
-const regexbirthdate = /^(((0[1-9]|[12][0-9]|30)[-/]?(0[13-9]|1[012])|31[-/]?(0[13578]|1[02])|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/]?[0-9]{4}|29[-/]?02[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$/;
+const regexbirthdate = /^\d{4}-\d{2}-\d{2}$/;
 
 // launch modal event
 
@@ -67,7 +67,7 @@ function closeModal() {
 
 // rest error message
 
-function restErrorMessage(){
+function resetErrorMessage(){
   errorFirstName.textContent = "";
   errorLastName.textContent = "";
   errorEmail.textContent = "";
@@ -80,7 +80,7 @@ function restErrorMessage(){
 //Form input checks
 
   function validate(e) {
-    restErrorMessage()
+    resetErrorMessage()
     var isValid = true;
 
     //verification the first name is empty or less than 2 characters
@@ -103,7 +103,7 @@ function restErrorMessage(){
 
   // verification the email is valid or not 
   
-  if (regexMessagerie.test(email.value) == false) {
+  if (!regexMessagerie.test(email.value)) {
     errorEmail.textContent = "L'adresse de messagerie n'est pas valide.."
     errorEmail.style.fontSize = "12px";
     errorEmail.style.color = "red";
@@ -111,8 +111,7 @@ function restErrorMessage(){
   }
 
   // verification if the birthdate is valid or not
-
-  if (regexbirthdate.test(birthdate.value)){
+  if (!regexbirthdate.test(birthdate.value)){
     errorBirthdate.textContent = "la date de naissance n'est pas valide.."
     errorBirthdate.style.fontSize = "12px";
     errorBirthdate.style.color = "red";

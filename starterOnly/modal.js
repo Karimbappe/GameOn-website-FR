@@ -8,6 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
+
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -95,7 +96,7 @@ function resetErrorMessage(){
   //verification the name is empty or less than 2 characters or contains numbers*/
 
   if (!lastName.value || lastName.value.lenght <= 2 || regexLettres.test(lastName.value) == false){
-  errorLastName.textContent = "le nom doit comporter 2 charactères minimum sans accent et uniquement des lettres."
+  errorLastName.textContent = "Le nom doit comporter 2 charactères minimum sans accent et uniquement des lettres."
   errorLastName.style.fontSize = "12px";
   errorLastName.style.color = "red";
   isValid = false;
@@ -104,7 +105,7 @@ function resetErrorMessage(){
   // verification the email is valid or not 
   
   if (!regexMessagerie.test(email.value)) {
-    errorEmail.textContent = "L'adresse de messagerie n'est pas valide.."
+    errorEmail.textContent = "L'adresse de messagerie n'est pas valide..."
     errorEmail.style.fontSize = "12px";
     errorEmail.style.color = "red";
     isValid = false;
@@ -112,7 +113,7 @@ function resetErrorMessage(){
 
   // verification if the birthdate is valid or not
   if (!regexbirthdate.test(birthdate.value)){
-    errorBirthdate.textContent = "la date de naissance n'est pas valide.."
+    errorBirthdate.textContent = "La date de naissance n'est pas valide.."
     errorBirthdate.style.fontSize = "12px";
     errorBirthdate.style.color = "red";
     isValid = false
@@ -121,7 +122,7 @@ function resetErrorMessage(){
   // check if the number of tournament input is not empty
 
   if (!numberTournaments.value) {
-    errorNumberTournaments.textContent = "Vous devez entrer un nombre dans ce champ.."
+    errorNumberTournaments.textContent = "Vous devez entrer un nombre dans ce champ..."
     errorNumberTournaments.style.fontSize = "12px";
     errorNumberTournaments.style.color = "red";
     isValid = false;
@@ -149,13 +150,13 @@ function resetErrorMessage(){
   // if is valid true display a thank message
 
   if (isValid) {
-    containerForm.textContent = "Merci, votre formulaire nous a bien été transmis";
+    containerForm.textContent = "Merci, votre formulaire nous a bien été transmis !";
     containerForm.style.fontFamily = "DM Sans";
     containerForm.style.height = "700px";
     containerForm.style.paddingTop = "300px";
     containerForm.style.textAlign = "center";
     boutonClose.style.display = "block";
-    boutonClose.addEventListener("click", closeModal);
+    boutonClose.addEventListener.submitButon("click", closeModal);
   }
   return isValid;
 }

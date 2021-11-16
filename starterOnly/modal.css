@@ -97,7 +97,6 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 } 
 
@@ -482,7 +481,7 @@ footer {
 @media screen and (max-width: 800px) {
   img {
   padding-right: 1rem;
-  width: 140px;
+  width: 200px;
   margin: 13px;
 }
 .bground {

@@ -8,7 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
-
+ 
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -39,34 +39,37 @@ const containerForm = document.querySelector('.modal-body');
 const boutonClose = document.querySelector('.btn-close')
 
 
-//Regex
+// Regex
 
 const regexLettres = /^[a-zA-Z-\s]+$/;
 const regexMessagerie = /^[\w\-\+]+(\.[\w\-]+)*@[\w\-]+(\.[\w\-]+)*\.[\w\-]{2,4}$/;
 const regexbirthdate = /^\d{4}-\d{2}-\d{2}$/;
 
-// launch modal event
+// Launch modal event
 
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
+// Launch modal form
 
 function launchModal() {
   modalbg.style.display = "block";
+ 
 }
 
-// listener closing form when clicking on the cross
+
+
+// Listener closing form when clicking on the cross
 
 buttonClose.addEventListener("click", closeModal);
 
-//Form closing function when clicking on the cross
+// Form closing function when clicking on the cross
 
 function closeModal() {
   modalbg.style.display = "none";
   document.location.reload();
 };
 
-// rest error message
+// Rest error message
 
 function resetErrorMessage(){
   errorFirstName.textContent = "";
@@ -78,22 +81,23 @@ function resetErrorMessage(){
   errorCheck.textContent = "";
 } 
 
-//Form input checks
+// Form input checks
 
   function validate(e) {
-    resetErrorMessage()
-    var isValid = true;
+    e.preventDefault();
+    resetErrorMessage();
+    let isValid = true;
 
-    //verification the first name is empty or less than 2 characters
+    // Verification the first name is empty or less than 2 characters
 
-    if (!firstName.value || firstName.value.length <= 2 || regexLettres.test(firstName.value) == false) {
+    if (!firstName.value || firstName.value.trim().length <= 2 || regexLettres.test(firstName.value) == false) {
     errorFirstName.textContent = "Le prénom doit comporter 2 charactères minimum sans accent et uniquement des lettres."
     errorFirstName.style.fontSize = "12px";
     errorFirstName.style.color = "red";
     isValid = false;
   }
 
-  //verification the name is empty or less than 2 characters or contains numbers*/
+  // Verification the name is empty or less than 2 characters or contains numbers*/
 
   if (!lastName.value || lastName.value.lenght <= 2 || regexLettres.test(lastName.value) == false){
   errorLastName.textContent = "Le nom doit comporter 2 charactères minimum sans accent et uniquement des lettres."
@@ -102,7 +106,7 @@ function resetErrorMessage(){
   isValid = false;
   }
 
-  // verification the email is valid or not 
+  // Verification the email is valid or not 
   
   if (!regexMessagerie.test(email.value)) {
     errorEmail.textContent = "L'adresse de messagerie n'est pas valide..."
@@ -111,7 +115,8 @@ function resetErrorMessage(){
     isValid = false;
   }
 
-  // verification if the birthdate is valid or not
+  // Verification if the birthdate is valid or not
+
   if (!regexbirthdate.test(birthdate.value)){
     errorBirthdate.textContent = "La date de naissance n'est pas valide.."
     errorBirthdate.style.fontSize = "12px";
@@ -119,7 +124,7 @@ function resetErrorMessage(){
     isValid = false
   }
 
-  // check if the number of tournament input is not empty
+  // Check if the number of tournament input is not empty
 
   if (!numberTournaments.value) {
     errorNumberTournaments.textContent = "Vous devez entrer un nombre dans ce champ..."
@@ -128,7 +133,7 @@ function resetErrorMessage(){
     isValid = false;
   }
 
-  //test if one of the cities is checked otherwise error message
+  // Test if one of the cities is checked otherwise error message
 
   if (!((nyCity.checked) || (sfCity.checked) || (seattleCity.checked) ||
     (chicagoCity.checked) || (bostonCity.checked) || (portlandCity.checked))) {
@@ -138,7 +143,7 @@ function resetErrorMessage(){
     isValid = false;
   }
 
-  //check if checked
+  // Check if checked
 
   if (!focuscgu1.checked) {
     errorCheck.textContent = "Vous devez vérifier que vous acceptez les termes et conditions.";
@@ -147,7 +152,7 @@ function resetErrorMessage(){
     isValid = false;
   }
 
-  // if is valid true display a thank message
+  // If is valid true display a thank message
 
   if (isValid) {
     containerForm.textContent = "Merci, votre formulaire nous a bien été transmis !";
@@ -156,8 +161,11 @@ function resetErrorMessage(){
     containerForm.style.paddingTop = "300px";
     containerForm.style.textAlign = "center";
     boutonClose.style.display = "block";
-    boutonClose.addEventListener.submitButon("click", closeModal);
+    boutonClose.addEventListener("click", closeModal);
   }
   return isValid;
 }
+
+form.addEventListener("submit", validate);
+  // onsubmit="return validate();
 

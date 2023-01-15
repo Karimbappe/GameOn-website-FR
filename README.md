@@ -3,6 +3,8 @@ GameOn Website
 
 GameOn Website est un projet de formulaire d'inscription pour un site de gaming. Il est développé en utilisant HTML, CSS et JavaScript. Il permet aux utilisateurs de s'inscrire et de créer un compte pour accéder au contenu exclusif du site de jeux.
 
+stack : HTML, CSS, JavaScript
+
 Fonctionnalités
 
 - Formulaire d'inscription avec validation des champs pour s'assurer que toutes les informations requises sont fournies
